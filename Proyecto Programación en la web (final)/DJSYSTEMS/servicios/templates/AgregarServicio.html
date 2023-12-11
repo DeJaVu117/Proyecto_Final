@@ -1,0 +1,113 @@
+{% load static %}
+{% block content %} 
+<style>
+    .navbar{
+background-color:deepskyblue;
+color:white;
+font-family: Helvetica;
+display: flex;
+
+
+}
+#navbar_text{
+    margin-left: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 25px;
+    margin-right:10px;
+    
+   
+}
+
+
+.link{
+color: white;
+
+}
+
+
+.contenedor{
+display: flex;
+text-align: left;
+font-size: 30px;
+
+
+} 
+.titulo{
+        color: blue;
+        text-align: center;
+       }
+      
+       #btnEntrarSalir{
+       
+        margin-left: 94%;
+        color: white;
+        background-color: blue;
+        border-radius: 5px;
+       }
+       #btnNuevaNota{
+        background-color: blue;
+        text-align: left;
+        border-radius: 5px;
+        color: white;
+       }
+       thead{
+        background-color: deepskyblue;
+       }
+       .btn_btn-success{
+    background-color: deepskyblue;
+    border-radius: 5px;
+} 
+      
+    </style>
+        {% if messages %}
+        {% for message in messages %}
+        <div {% if message.tags == 'warning' %} class="alert alert-warning alert-message"{% else %} class="alert alert-success alert-message" {% endif %}>
+            <b class="message-alert">{{ message }}</b>       
+        </div>	
+        {% endfor %}
+        {% endif %}
+        <div class="navbar">
+            <div class="logo"> <img src="{% static '/img/DJ-logo-10.png' %}" width="150px">
+        </div>
+            <div id="navbar_text">
+            <a class="link" href="{% url 'index' %}">Home ||</a>
+            <a class="link" href="{% url 'contacto' %}"> Contacto ||</a>
+            <a class="link" href="{% url 'servicio' %}"> Servicios ||</a>
+            {% if user.is_authenticated %}
+            <a class="link" href="{% url 'logout' %}">Salir</a>
+                {% else %}
+            <a class="link" href="{% url 'login' %}"> Ingresar</a>
+            </div>
+            {% endif %}
+        
+        </div>
+        </div>
+  
+
+
+{% block extrahead %} 
+<title>Agregar Servicio</title>
+{% endblock extrahead%}
+
+ 
+<h1 class="display-3" id="title">Nuevo Servicio</h1>
+<p>Ingrese la información del servicio realizado</p>
+<div class="container formulario">
+    <form method="POST" enctype="multipart/form-data">
+ 
+       
+        {% csrf_token %}
+     
+    
+        <table class="table">
+            {{ form.as_table }}
+        </table>
+         
+        <input type="submit" value="Guardar" class="btn_btn-success">
+        <a type="button" class="btn_btn-danger" href="{% url 'gestion_servicio' %}">Cancelar</a>
+    </form>   
+</div>
+
+
+{% endblock content%}

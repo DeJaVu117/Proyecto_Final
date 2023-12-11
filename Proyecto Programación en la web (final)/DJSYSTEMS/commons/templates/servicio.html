@@ -1,0 +1,160 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+ 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DJSYSTEMS</title>
+</head>
+<style>
+    .navbar{
+background-color:deepskyblue;
+color:white;
+font-family: Helvetica;
+display: flex;
+
+
+}
+#navbar_text{
+    margin-left: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 25px;
+    margin-right:10px;
+    
+   
+}
+
+
+.link{
+color:white;
+font-size: 25px;
+
+}
+.link_resena{
+    color:blue;
+font-size: 25px;
+}
+
+
+.contenedor{
+display: flex;
+text-align: left;
+font-size: 30px;
+
+
+}
+#nosotros{
+    margin-right: auto;
+}
+
+.tabla{
+width: 100%;
+text-align: center;
+}
+
+#form{
+width: 100%;
+text-align: center;
+
+}
+.mantenimiento{
+    font-family: Helvetica;
+    font-size: 20px;
+justify-content: center;
+    
+}
+#img_mant{
+text-align: center;
+padding: 10px;
+}
+.desarrollo{
+    text-align: center;
+    padding: 10px;
+    }
+.capacitacion{
+    font-family: Helvetica;
+    font-size: 20px;
+justify-content: center;
+}
+.mantenimiento{
+    font-family: Helvetica;
+    font-size: 20px;
+justify-content: center;
+    
+}
+#img_mant{
+text-align: center;
+padding: 10px;
+}
+.desarrollo{
+    text-align: center;
+    padding: 10px;
+    }
+.capacitacion{
+    font-family: Helvetica;
+    font-size: 20px;
+justify-content: center;
+}
+
+</style>
+
+    {% if messages %}
+	{% for message in messages %}
+    <div {% if message.tags == 'warning' %} class="alert alert-warning alert-message"{% else %} class="alert alert-success alert-message" {% endif %}>
+        <b class="message-alert">{{ message }}</b>       
+    </div>	
+	{% endfor %}
+{% endif %}
+    <div class="navbar">
+        <div class="logo"> <img src="{% static '/img/DJ-logo-10.png' %}" width="150px">
+    </div>
+        <div id="navbar_text">
+        <a class="link" href="{% url 'index' %}">Home ||</a>
+        <a class="link" href="{% url 'contacto' %}"> Contacto ||</a>
+       
+        {% if user.is_authenticated %}
+        <a class="link" href="{% url 'logout' %}">Salir</a>
+            {% else %}
+        <a class="link" href="{% url 'login' %}"> Ingresar</a>
+        </div>
+        {% endif %}
+
+    </div>
+</div>
+{% block content %}
+<h1 style="justify-content: center; font-family: Helvetica;">Servicios</h1>
+    <p style="justify-content: center; font-family: Helvetica; font-size: 25px;">Nuestra empresa tiene para ofrecer múltiples servicios que se ajustan a tus dispositivos como: </p>
+    <div class="mantenimiento">
+<h3 >Mantenimiento de Hardware y Software</h3>
+<div id="img_mant"><img src="{% static '/img/Computadora-hardware-768x872.png' %}" width="250px"></div>
+<p >Nos ofrecemos para realizar mantenimiento a tus computadoras para que no tengas que preocuparte por el malfuncionamiento ocasionado por polvo en los componentes de tu computadora ofrecemos dos tipos de mantenimiento: </p>
+<h4 >Mantenimiento Preventivo</h4>
+<p >El mantenimiento preventivo de computadores son todas aquellas tareas periódicas que se realizan para prevenir fallas o errores en el software como: sistema operativo, antivirus o programas ofimáticos.
+    Entonces, prevenir fallos a través del mantenimiento de tus equipos de cómputo, te ayuda a ahorrar tiempo y dinero, haciendo que tus actividades diarias sean más productivas.
+¿Cuál es el propósito de realizar el mantenimiento de computadores? No es otro que anticiparse a posibles y potenciales fallas (todo equipo de cómputo es susceptible) en los equipos de cómputo antes de que éstas ocurran.
+La clave del mantenimiento preventivo de computadores es que debe realizarse periódicamente tanto para el hardware como software de tus computadores de escritorio o PC y computadores portátiles o laptops.</p>
+<h4>Mantenimiento Correctivo</h4>
+<p>El mantenimiento correctivo es un tipo de mantenimiento realizado por los técnicos para corregir un mal funcionamiento de equipos, maquinarias y sistemas. Su objetivo es restablecer el buen estado de funcionamiento y el nivel de rendimiento especificado de los activos de la empresa. El mantenimiento correctivo se denomina a veces mantenimiento reactivo porque se pone en marcha cuando ya se ha producido un fallo en la máquina.</p>
+<h3>Desarrollo de Software</h3>
+<div class="desarrollo"><img src="{% static '/img/desarrollo.png' %}" width="250px"></div> 
+<p>El desarrollo de software a medida es el servicio de diseño y creación de herramientas informáticas basadas en necesidades particulares de la empresa que lo contrata.
+
+    Para ello, un equipo de expertos analizan las características de la compañía en busca de optimizar aquellos procesos clave para el negocio. El resultado de este análisis resulta en la creación de un sistema a medida que impacte de forma directa o indirecta en las ganancias de la empresa.</p>
+       
+</div>
+<div class="capacitacion">
+<h3>Capacitación en desarrollo de software</h3>
+<div class="desarrollo"><img src="{% static '/img/hackmetrix_politica_desarrollo_seguro_mejores_practicas_owasp.png' %}" width="250px"></div> 
+<p>Se entiende por capacitación aquellas actividades educativas que están diseñadas para mejorar el desempeño laboral de un individuo o grupo. Estos programas implican mejorar el conocimiento y las habilidades de un trabajador e inculcar una mayor motivación para mejorar el desempeño laboral.Los programas de formación capacitación se pueden crear de forma independiente o con un sistema de administración de aprendizaje, con el objetivo de que los empleados se desarrollen a largo plazo. 
+    Entonces en DJSYSTEMS buscamos enseñarte de la mejor manera para que lleves aquellos proyectos de desarrollo 
+</p>
+</div>
+
+<p style="justify-content: center; font-family: Helvetica; font-size: 25px;">Si quieres comprobar por ti mismo que cumplimos y bridamos un excelente servicio a la medida,en el siguiente link podrás ver los servicios que hemos ofrecido junto a la calificacion de nuestro cliente</p>
+<a class="link_resena"  href="{% url 'gestion_servicio' %}"> Reseñas</a>
+        
+</body>
+</html>
+{% endblock content%}

@@ -1,0 +1,124 @@
+{% load static %}
+{% block content %} 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+ 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DJSYSTEMS</title>
+</head>
+<style>
+    .navbar{
+background-color:deepskyblue;
+color:white;
+font-family: Helvetica;
+display: flex;
+
+
+}
+#navbar_text{
+    margin-left: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 25px;
+    margin-right:10px;
+    
+   
+}
+
+
+.link{
+color: white;
+
+}
+
+
+.contenedor{
+display: flex;
+text-align: left;
+font-size: 30px;
+
+
+}
+#nosotros{
+    margin-right: auto;
+}
+
+.tabla{
+width: 100%;
+text-align: center;
+}
+
+#form{
+width: 100%;
+text-align: center;
+
+}
+.mantenimiento{
+    font-family: Helvetica;
+    font-size: 20px;
+justify-content: center;
+    
+}
+#img_mant{
+text-align: center;
+padding: 10px;
+}
+.desarrollo{
+    text-align: center;
+    padding: 10px;
+    }
+.capacitacion{
+    font-family: Helvetica;
+    font-size: 20px;
+justify-content: center;
+}
+
+.btn_btn-success{
+    background-color: deepskyblue;
+    border-radius: 5px;
+}
+</style>
+
+    {% if messages %}
+	{% for message in messages %}
+    <div {% if message.tags == 'warning' %} class="alert alert-warning alert-message"{% else %} class="alert alert-success alert-message" {% endif %}>
+        <b class="message-alert">{{ message }}</b>       
+    </div>	
+	{% endfor %}
+{% endif %}
+    <div class="navbar">
+        <div class="logo"> <img src="{% static '/img/DJ-logo-10.png' %}" width="150px">
+    </div>
+        <div id="navbar_text">
+        <a class="link" href="../html/Home.html">Home ||</a>
+        <a class="link" href="../html/Contacto.html"> Contacto ||</a>
+        <a class="link" href="../html/Servicios.html"> Servicios ||</a>
+        {% if user.is_authenticated %}
+        <a class="link" href="{% url 'logout' %}">Salir</a>
+            {% else %}
+        <a class="link" href="{% url 'login' %}"> Ingresar</a>
+        </div>
+        {% endif %}
+
+    </div>
+</div>
+
+{% block extrahead %} 
+<title>Eliminar Servicio</title>
+{% endblock extrahead%}
+
+
+<h1 class="display-3" id="title">Eliminar Servicio</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    Esta seguro de eliminar por completo este servicio de la base de datos?
+    <br>
+    <input type="submit" value="Si"  class="btn_btn-success"  />
+    <a href="{% url 'gestion_servicio' %}"  class="btn_btn-danger" >Cancel </a>
+</form> 
+
+
+{% endblock content%}

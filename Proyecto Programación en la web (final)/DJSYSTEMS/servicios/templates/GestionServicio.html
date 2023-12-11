@@ -1,0 +1,154 @@
+{% load static %}
+{% block content %} 
+<style>
+    .navbar{
+background-color:deepskyblue;
+color:white;
+font-family: Helvetica;
+display: flex;
+
+
+}
+#navbar_text{
+    margin-left: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 25px;
+    margin-right:10px;
+    
+   
+}
+
+
+.link{
+color: white;
+
+}
+
+
+.contenedor{
+display: flex;
+text-align: left;
+font-size: 30px;
+
+
+}
+.titulo{
+     color: blue;
+     text-align: center;
+    }
+   
+    #btnEntrarSalir{
+    
+     margin-left: 94%;
+     color: white;
+     background-color: blue;
+     border-radius: 5px;
+    }
+    #btnNuevaNota{
+     background-color: blue;
+     text-align: left;
+     border-radius: 5px;
+     color: white;
+    }
+    thead{
+     background-color: deepskyblue;
+    }
+    .btn_btn-success{
+        color:blue;
+        
+
+
+    }
+
+.botones_edicion{
+    background-color: deepskyblue;
+        border-radius: 5px;
+        color:white;
+}   
+
+   
+ </style>
+{% if messages %}
+{% for message in messages %}
+<div {% if message.tags == 'warning' %} class="alert alert-warning alert-message"{% else %} class="alert alert-success alert-message" {% endif %}>
+    <b class="message-alert">{{ message }}</b>       
+</div>	
+{% endfor %}
+{% endif %}
+<div class="navbar">
+    <div class="logo"> <img src="{% static '/img/DJ-logo-10.png' %}" width="150px">
+</div>
+    <div id="navbar_text">
+    <a class="link" href="{% url 'index' %}">Home ||</a>
+    <a class="link" href="{% url 'contacto' %}"> Contacto ||</a>
+    <a class="link" href="{% url 'servicio' %}"> Servicios ||</a>
+    {% if user.is_authenticated %}
+    <a class="link" href="{% url 'logout' %}">Salir</a>
+        {% else %}
+    <a class="link" href="{% url 'login' %}"> Ingresar</a>
+    </div>
+    {% endif %}
+
+</div>
+</div>
+
+<br>
+<h1>Servicios</h1>
+
+
+<table BORDER WIDTH="100%"; id="tablaServicio">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th>Servicio</th>
+            <th>Fecha</th>
+            <th>Calificacion</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+      {% for Servicio in page_obj %}
+      <tr>
+        <th scope="row">{{ Servicio.id }}</th>
+        <td>{{ Servicio.servicio }}</td>
+        <td>{{ Servicio.fecha }}</td>
+        <td>{{ Servicio.calificacion }}</td>
+        <td>
+            <table scope="col"; BORDER WIDTH="100%">
+                <tr>
+                <td><a type="button-sm" class="botones_edicion" href="{% url 'ver_servicio' Servicio.id %}">Ver</a></td>
+                <td><a type="button-sm" class="botones_edicion" href="{% url 'editar_servicio' Servicio.id %}">Editar</a></td>
+                <td><a type="button-sm" class="botones_edicion" href="{% url 'borrar_servicio' Servicio.id %}">Borrar</a></td>
+                <td><a type="button" class="botones_edicion" href="{% url 'agregar_servicio' %}">Agregar</a>
+                </tr>
+            </table>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+</body>
+
+
+
+{% endblock content%}

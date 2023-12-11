@@ -1,0 +1,129 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+ 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DJSYSTEMS</title>
+</head>
+<style>
+    .navbar{
+background-color:deepskyblue;
+color:white;
+font-family: Helvetica;
+display: flex;
+
+
+}
+#navbar_text{
+    margin-left: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 25px;
+    margin-right:10px;
+    
+   
+}
+
+
+.link{
+color: white;
+
+}
+
+
+.contenedor{
+display: flex;
+text-align: left;
+font-size: 30px;
+
+
+}
+#nosotros{
+    margin-right: auto;
+}
+
+.tabla{
+width: 100%;
+text-align: center;
+}
+
+#form{
+width: 100%;
+text-align: center;
+
+}
+.mantenimiento{
+    font-family: Helvetica;
+    font-size: 20px;
+justify-content: center;
+    
+}
+#img_mant{
+text-align: center;
+padding: 10px;
+}
+.desarrollo{
+    text-align: center;
+    padding: 10px;
+    }
+.capacitacion{
+    font-family: Helvetica;
+    font-size: 20px;
+justify-content: center;
+
+#form{
+height: 100%;
+width: 100%;
+text-align: center;
+margin: 0 auto;
+max-width: 600px;
+}
+}
+</style>
+
+    {% if messages %}
+	{% for message in messages %}
+    <div {% if message.tags == 'warning' %} class="alert alert-warning alert-message"{% else %} class="alert alert-success alert-message" {% endif %}>
+        <b class="message-alert">{{ message }}</b>       
+    </div>	
+	{% endfor %}
+{% endif %}
+    <div class="navbar">
+        <div class="logo"> <img src="{% static '/img/DJ-logo-10.png' %}" width="150px">
+    </div>
+        <div id="navbar_text">
+        <a class="link" href="{% url 'index' %}">Home ||</a>
+
+        {% if user.is_authenticated %}
+        <a class="link" href="{% url 'logout' %}">Salir</a>
+            {% else %}
+        <a class="link" href="{% url 'login' %}"> Ingresar</a>
+        </div>
+        {% endif %}
+
+    </div>
+</div>
+<div id="form">
+    <h1 class="encabezado" id="form">Contactános!</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <label for="mensaje">¿En que te ayudamos?</label><br/>
+        <input type="text" name="mensaje" id="mensaje"/><br/>
+        <label for="name">Nombre</label><br/>
+        <input type="text" name="name" id="name"/><br/>
+        <label for="apellido">Apellido</label><br/>
+        <input type="text" name="apellido" id="apellido"/><br/>
+        <label for="correo">Correo</label><br/>
+        <input type="text" name="correo" id="correo"/><br/>
+        <label for="telefono">Telefono</label><br/>
+        <input type="text" name="telefono" id="telefono"/><br/>
+        <input type="submit" value="Enviar">
+
+
+
+
+
+    </form>
+
+</div>

@@ -1,0 +1,143 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+ 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DJSYSTEMS</title>
+</head>
+<style>
+    .navbar{
+background-color:deepskyblue;
+color:white;
+font-family: Helvetica;
+display: flex;
+
+
+}
+#navbar_text{
+    margin-left: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 25px;
+    margin-right:10px;
+    
+   
+}
+
+
+.link{
+color: white;
+
+}
+
+
+.contenedor{
+display: flex;
+text-align: left;
+font-size: 30px;
+
+
+}
+#nosotros{
+    margin-right: auto;
+}
+
+.tabla{
+width: 100%;
+text-align: center;
+}
+
+#form{
+width: 100%;
+text-align: center;
+
+}
+.mantenimiento{
+    font-family: Helvetica;
+    font-size: 20px;
+justify-content: center;
+    
+}
+#img_mant{
+text-align: center;
+padding: 10px;
+}
+.desarrollo{
+    text-align: center;
+    padding: 10px;
+    }
+.capacitacion{
+    font-family: Helvetica;
+    font-size: 20px;
+justify-content: center;
+}
+</style>
+
+    {% if messages %}
+	{% for message in messages %}
+    <div {% if message.tags == 'warning' %} class="alert alert-warning alert-message"{% else %} class="alert alert-success alert-message" {% endif %}>
+        <b class="message-alert">{{ message }}</b>       
+    </div>	
+	{% endfor %}
+{% endif %}
+    <div class="navbar">
+        <div class="logo"> <img src="{% static '/img/DJ-logo-10.png' %}" width="150px">
+    </div>
+        <div id="navbar_text">
+        <a class="link" href="{% url 'index' %}">Home ||</a>
+        <a class="link" href="{% url 'contacto' %}"> Contacto ||</a>
+        <a class="link" href="{% url 'servicio' %}"> Servicios ||</a>
+        {% if user.is_authenticated %}
+        <a class="link" href="{% url 'logout' %}">Salir</a>
+            {% else %}
+        <a class="link" href="{% url 'login' %}"> Ingresar</a>
+        </div>
+        {% endif %}
+
+    </div>
+</div>
+        <h1 class="encabezado">Quienes Somos</h1>
+        <div class="contenedor">
+        <div id="nosotros">
+        <p >Somos ingenieros especializados que se encargan de mantener todos tus dispositivos en buena forma y ofrecerte asesoría personal</p>
+       
+    </div>
+    <img src="{% static '/img/img_tecnisisi.jpg' %}" width="350px" height="250px">
+    </div>
+    <br>
+    <br>
+   <div class="tabla">
+    <h2>Equipo de trabajo</h2>
+    <table class="tabla">
+    
+    <tr>
+    <th><img src="{% static '/img/11624278-sonriente-joven-empleado-después-tomar-notas-en-el-sujetapapeles-sobre-un-fondo-blanco.jpg' %}" width="100"></th>
+    <th><img src="{% static '/img/el-gerente-general-de-enojado-gritandole-a-empleados-por-telefono-2acdyxt.jpg' %}" width="100"></th>
+    <th><img src="{% static '/img/Imagen de WhatsApp 2023-11-09 a las 16.44.33_6330f980.jpg' %}" width="100"></th>
+    <th><img src="{% static '/img/55420231-un-joven-empleado-en-los-servicios-comerciales-de-éxito.jpg' %}" width="100"></th>
+    
+    
+    </tr>
+    <tr>
+    <td>Christian Baracaldo</td>
+    <td>Jeferson Baracaldo</td>
+    <td>Yorman Lopez</td>
+    <td>Diego Landinez</td>
+    </tr>
+    
+    <tr>
+    <td>Diseñador Gráfico</td>
+    <td>Ingeniero de Sistemas</td>
+    <td>Desarrollador Web</td>
+    <td>Ingeniero de sistemas</td>
+        
+   
+    
+    </table>
+</div>
+
+
+
+</html>
